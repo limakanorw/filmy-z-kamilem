@@ -14,7 +14,8 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 📥 Zapisz do Supabase
+    console.log("🔄 Wysyłam dane do Supabase:", imie, okazja);
+
     const { data, error } = await supabase.from("zamowienia").insert([
       {
         imie: imie,
@@ -23,8 +24,10 @@ export default function Home() {
     ]);
 
     if (error) {
+      console.error("❌ Błąd z Supabase:", error);
       alert("❌ Błąd podczas zapisu: " + error.message);
     } else {
+      console.log("✅ Zapisane dane:", data);
       setPokazWiadomosc(true);
     }
   };
