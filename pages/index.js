@@ -3,7 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 
 // 🔑 TU WSTAW SWOJE DANE Z SUPABASE
 const supabaseUrl = 'https://kpazcytrntskvhldogmb.supabase.co';
-const supabaseKey = ''eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtwYXpjeXRybnRza3ZobGRvZ21iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDczMDI2MTksImV4cCI6MjA2Mjg3ODYxOX0.pMXpOX1BVHJDaANKhdsnBQnptUp-e0Z98ktYz6O7VLc'';
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtwYXpjeXRybnRza3ZobGRvZ21iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDczMDI2MTksImV4cCI6MjA2Mjg3ODYxOX0.pMXpOX1BVHJDaANKhdsnBQnptUp-e0Z98ktYz6O7VLc";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function Home() {
