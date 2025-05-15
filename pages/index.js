@@ -1,19 +1,38 @@
 import { useState } from "react";
+import { createClient } from "@supabase/supabase-js";
+
+// 🔑 TU WSTAW SWOJE DANE Z SUPABASE
+const supabaseUrl = 'https://kpazcytrntskvhldogmb.supabase.co';
+const supabaseKey = ''eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtwYXpjeXRybnRza3ZobGRvZ21iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDczMDI2MTksImV4cCI6MjA2Mjg3ODYxOX0.pMXpOX1BVHJDaANKhdsnBQnptUp-e0Z98ktYz6O7VLc'';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function Home() {
   const [imie, setImie] = useState("");
   const [okazja, setOkazja] = useState("");
   const [pokazWiadomosc, setPokazWiadomosc] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // zapobiega przeładowaniu strony
-    setPokazWiadomosc(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // 📥 Zapisz do Supabase
+    const { data, error } = await supabase.from("zamowienia").insert([
+      {
+        imie: imie,
+        okazja: okazja,
+      },
+    ]);
+
+    if (error) {
+      alert("❌ Błąd podczas zapisu: " + error.message);
+    } else {
+      setPokazWiadomosc(true);
+    }
   };
 
   return (
     <div style={{ textAlign: "center", padding: "2rem" }}>
       <h1>🎬 Filmy z Kamilem</h1>
-      <p>Wpisz imię i okazję, a przygotujemy specjalne życzenia!</p>
+      <p>Wpisz imię i okazję, a zapiszemy Twoje zamówienie!</p>
 
       <form onSubmit={handleSubmit} style={{ marginTop: "1rem" }}>
         <input
